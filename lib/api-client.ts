@@ -52,8 +52,16 @@ async function fetchApi<T>(
       },
     });
 
+    // Get response text first to handle JSON parsing errors better
+    const responseText = await response.text();
+
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
+      let errorData;
+      try {
+        errorData = JSON.parse(responseText);
+      } catch {
+        errorData = { message: responseText || response.statusText };
+      }
       
       // If unauthorized, remove token
       if (response.status === 401) {
@@ -67,7 +75,14 @@ async function fetchApi<T>(
       );
     }
 
-    return await response.json();
+    // Parse successful response
+    try {
+      return JSON.parse(responseText);
+    } catch (parseError) {
+      throw new Error(
+        `Invalid JSON response from server: ${parseError instanceof Error ? parseError.message : "Unable to parse response"}`
+      );
+    }
   } catch (error) {
     if (error instanceof ApiError) {
       throw error;

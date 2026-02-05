@@ -31,15 +31,15 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
+        <div className="flex min-h-screen items-center justify-center bg-background px-4">
             <Card className="w-full max-w-md">
                 <CardHeader className="space-y-1">
                     <div className="flex items-center justify-center mb-4">
-                        <div className="h-12 w-12 rounded-full bg-blue-600 flex items-center justify-center">
-                            <span className="text-white text-xl font-bold">V</span>
+                        <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center">
+                            <span className="text-primary-foreground text-xl font-bold">V</span>
                         </div>
                     </div>
-                    <CardTitle className="text-2xl text-center">Vitaway Employer</CardTitle>
+                    <CardTitle className="text-2xl text-center">Vitaway</CardTitle>
                     <CardDescription className="text-center">
                         Sign in to access your organization dashboard
                     </CardDescription>
@@ -47,7 +47,7 @@ export default function LoginPage() {
                 <CardContent>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         {error && (
-                            <div className="flex items-center gap-2 p-3 text-sm text-red-800 bg-red-50 border border-red-200 rounded-lg">
+                            <div className="flex items-center gap-2 p-3 text-sm text-red-800 dark:text-red-400 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg">
                                 <AlertCircle className="h-4 w-4" />
                                 <span>{error}</span>
                             </div>
@@ -91,7 +91,7 @@ export default function LoginPage() {
                         </Button>
                     </form>
 
-                    <div className="mt-6 text-center text-sm text-gray-600">
+                    <div className="mt-6 text-center text-sm text-muted-foreground">
                         <p>For assistance, contact your EHR administrator</p>
                     </div>
                 </CardContent>

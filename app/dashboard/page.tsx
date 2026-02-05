@@ -81,8 +81,8 @@ export default function DashboardOverview() {
     return (
       <div className="flex items-center justify-center h-full">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading dashboard...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Loading dashboard...</p>
         </div>
       </div>
     );
@@ -99,15 +99,15 @@ export default function DashboardOverview() {
         </div>
         
         {errorType === 'auth' ? (
-          <Card className="border-yellow-200 bg-yellow-50">
+          <Card className="border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-900/20">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-yellow-900">
+              <CardTitle className="flex items-center gap-2 text-yellow-900 dark:text-yellow-400">
                 <AlertCircle className="h-5 w-5" />
                 Authentication Required
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <p className="text-sm text-yellow-800">
+              <p className="text-sm text-yellow-800 dark:text-yellow-300">
                 You need to be logged in to view dashboard metrics.
                 {!isAuthenticated && " Please login to continue."}
               </p>
@@ -123,21 +123,21 @@ export default function DashboardOverview() {
                 )}
               </div>
               {user && (
-                <p className="text-xs text-yellow-700">
+                <p className="text-xs text-yellow-700 dark:text-yellow-400">
                   Logged in as: {user.email}
                 </p>
               )}
             </CardContent>
           </Card>
         ) : (
-          <Card className="border-red-200 bg-red-50">
+          <Card className="border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-red-900">
+              <CardTitle className="flex items-center gap-2 text-red-900 dark:text-red-400">
                 <AlertCircle className="h-5 w-5" />
                 {errorType === 'server' ? 'Backend Error' : 'Connection Error'}
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4 text-sm text-red-800">
+            <CardContent className="space-y-4 text-sm text-red-800 dark:text-red-300">
               <p className="font-medium">
                 {errorType === 'server' 
                   ? 'The backend encountered an error processing your request.' 
@@ -145,7 +145,7 @@ export default function DashboardOverview() {
               </p>
               <div className="flex gap-2 items-center">
                 <button
-                  className="inline-flex items-center rounded bg-red-600 px-3 py-1 text-white text-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
+                  className="inline-flex items-center rounded bg-red-600 dark:bg-red-700 px-3 py-1 text-white text-sm hover:bg-red-700 dark:hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
                   onClick={() => setShowDetails((s) => !s)}
                 >
                   {showDetails ? "Hide details" : "Show details"}

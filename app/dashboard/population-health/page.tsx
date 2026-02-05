@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -5,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { ChartCard } from "@/components/dashboard/chart-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PopulationHealthData, ApiResponse } from "@/types";
+import { ApiResponse } from "@/types";
 import { AlertCircle } from "lucide-react";
 import { getPopulationHealth } from "@/lib/api-client";
 import { useAuth } from "@/contexts/auth-context";
@@ -133,22 +134,6 @@ export default function PopulationHealthPage() {
           Aggregated health trends and risk indicators for your organization
         </p>
       </div>
-
-      {/* Important Notice */}
-      <Card className="border-blue-200 bg-blue-50">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-blue-900">
-            <AlertCircle className="h-5 w-5" />
-            Data Privacy Notice
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="text-sm text-blue-800">
-          All data displayed is aggregated and anonymized. Individual health
-          records are not accessible through this dashboard. Risk indicators are
-          for informational purposes only and do not constitute medical
-          diagnoses or recommendations.
-        </CardContent>
-      </Card>
 
       {/* BMI Distribution */}
       <ChartCard

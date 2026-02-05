@@ -1,4 +1,4 @@
-# VitaWay Employer Dashboard
+# Vitaway Dashboard
 
 A comprehensive organization/employer dashboard for a multi-tenant health platform built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui.
 

@@ -34,7 +34,7 @@ export default function ReportsPage() {
       setLoading(true);
       setError(null);
       const response = await getReports({ page: currentPage }) as ApiResponse<any>;
-      
+
       if (response?.success && response.data) {
         setReports(response.data.data || []);
         setTotalPages(response.data.last_page || 1);
@@ -47,7 +47,7 @@ export default function ReportsPage() {
     } catch (err: any) {
       console.error("Error fetching reports:", err);
       const message = err instanceof Error ? err.message : String(err);
-      
+
       if (message.includes('Unauthenticated') || message.includes('401')) {
         setErrorType('auth');
         setError('You need to login to view reports');
@@ -93,13 +93,12 @@ export default function ReportsPage() {
       label: "Status",
       render: (value: string) => (
         <span
-          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-            value === "COMPLETED"
+          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${value === "COMPLETED"
               ? "bg-green-100 text-green-800"
               : value === "GENERATING"
-              ? "bg-yellow-100 text-yellow-800"
-              : "bg-red-100 text-red-800"
-          }`}
+                ? "bg-yellow-100 text-yellow-800"
+                : "bg-red-100 text-red-800"
+            }`}
         >
           {value}
         </span>
@@ -153,22 +152,6 @@ export default function ReportsPage() {
           Generate reports and export data for internal review and compliance
         </p>
       </div>
-
-      {/* Important Notice */}
-      <Card className="border-amber-200 bg-amber-50">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-amber-900">
-            <AlertCircle className="h-5 w-5" />
-            Export Audit Notice
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="text-sm text-amber-800">
-          All data exports are audited and logged for compliance purposes. Only
-          aggregated data is available for export. Individual health records
-          require specific consent and are subject to additional approval
-          processes.
-        </CardContent>
-      </Card>
 
       <Tabs defaultValue="reports" className="space-y-4">
         <TabsList>
