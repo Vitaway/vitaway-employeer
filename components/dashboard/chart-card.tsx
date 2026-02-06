@@ -213,6 +213,17 @@ export function ChartCard({
                 cy="50%"
                 labelLine={false}
                 label={({ name, percent, cx, cy, midAngle, innerRadius, outerRadius }) => {
+                  // Type guard for undefined values
+                  if (
+                    typeof cx !== 'number' ||
+                    typeof cy !== 'number' ||
+                    typeof midAngle !== 'number' ||
+                    typeof innerRadius !== 'number' ||
+                    typeof outerRadius !== 'number'
+                  ) {
+                    return null;
+                  }
+
                   const RADIAN = Math.PI / 180;
                   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
                   const x = cx + radius * Math.cos(-midAngle * RADIAN);
